@@ -271,7 +271,8 @@ format = "$all$directory$character"
 ## AWS
 
 The `aws` module shows the current AWS region and profile when
-credentials or a `credential_process` have been setup. This is based on
+credentials or a `credential_process` have been setup. You can also force it even
+when creds have not been setup with the `display_empty_creds` option. This is based on
 `AWS_REGION`, `AWS_DEFAULT_REGION`, and `AWS_PROFILE` env var with
 `~/.aws/config` file. This module also shows an expiration timer when using temporary
 credentials.
@@ -281,6 +282,8 @@ The module will display a profile only if its credentials are present in
 `~/.aws/config`. Alternatively, having any of the `AWS_ACCESS_KEY_ID`,
 `AWS_SECRET_ACCESS_KEY`, or `AWS_SESSION_TOKEN` env vars defined will
 also suffice.
+If the option `display_empty_creds` is set to `true`, all available information will be
+displayed even if the conditions above are not respected.
 
 When using [aws-vault](https://github.com/99designs/aws-vault) the profile
 is read from the `AWS_VAULT` env var and the credentials expiration date
@@ -295,14 +298,15 @@ date is read from the `AWSUME_EXPIRATION` env var.
 
 ### Options
 
-| Option              | Default                                                          | Description                                                       |
-| ------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `format`            | `'on [$symbol($profile )(\($region\) )(\[$duration\])]($style)'` | The format for the module.                                        |
-| `symbol`            | `"☁️ "`                                                          | The symbol used before displaying the current AWS profile.        |
-| `region_aliases`    |                                                                  | Table of region aliases to display in addition to the AWS name.   |
-| `style`             | `"bold yellow"`                                                  | The style for the module.                                         |
-| `expiration_symbol` | `X`                                                              | The symbol displayed when the temporary credentials have expired. |
-| `disabled`          | `false`                                                          | Disables the `AWS` module.                                        |
+| Option                | Default                                                          | Description                                                                          |
+| --------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `format`              | `'on [$symbol($profile )(\($region\) )(\[$duration\])]($style)'` | The format for the module.                                                           |
+| `symbol`              | `"☁️ "`                                                          | The symbol used before displaying the current AWS profile.                           |
+| `region_aliases`      |                                                                  | Table of region aliases to display in addition to the AWS name.                      |
+| `style`               | `"bold yellow"`                                                  | The style for the module.                                                            |
+| `expiration_symbol`   | `X`                                                              | The symbol displayed when the temporary credentials have expired.                    |
+| `disabled`            | `false`                                                          | Disables the `AWS` module.                                                           |
+| `display_empty_creds` | `false`                                                          | If true displays info even if credentials or credential_process have not been setup. |
 
 ### Variables
 

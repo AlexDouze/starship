@@ -11,6 +11,7 @@ pub struct AwsConfig<'a> {
     pub disabled: bool,
     pub region_aliases: HashMap<String, &'a str>,
     pub expiration_symbol: &'a str,
+    pub display_empty_creds: bool,
 }
 
 impl<'a> Default for AwsConfig<'a> {
@@ -22,6 +23,7 @@ impl<'a> Default for AwsConfig<'a> {
             disabled: false,
             region_aliases: HashMap::new(),
             expiration_symbol: "X",
+            display_empty_creds: false,
         }
     }
 }
